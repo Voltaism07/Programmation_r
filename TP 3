@@ -1,0 +1,51 @@
+#Exercice 1
+
+#A
+population <- rnorm(10000000, mean = 171, sd = 9)
+
+#B
+mean(population)
+sd(population)
+
+#C
+hist(population)
+
+#D
+
+#Observé 
+sum(population >= 190)
+
+#Théorique
+(1-pnorm(190, mean = 171, sd = 9)) * 1e7
+
+#E
+
+sum(population <= 145)
+(1-pnorm(145, mean = 171, sd = 9)) * 1e7
+
+#Exercice 2
+
+#A
+#On crée un échantillon
+echan <- sample(population, 100)
+moyenne <- mean(echan)
+ecart_type <- sd(echan)
+
+#B
+intervalle_1 <- (moyenne - 1.96 * (ecart_type/100^(1/2))) #On fait puissance 1/2 pour faire la racine
+intervalle_2 <- (moyenne +1.96 * (ecart_type/100^(1/2)))
+
+#C
+simu <- replicate(1000, echan)
+moyenne2 <- apply(simu ,1 , mean)
+sd2 <- apply(simu, 1, sd)
+
+#D
+hist(moyenne2)
+
+#E
+mean(moyenne2)
+sd(moyenne2)
+
+#Exercice 3
+
